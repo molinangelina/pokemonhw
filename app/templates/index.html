@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    THIS IS THE SIGN UP PAGE
+    <form class="container" method="POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.poke_name(class='form-control', placeholder='poke_name', autocomplete='off')}}
+        {{ form.submit(class='btn btn-primary')}}
+    </form>
+    {% if pokemon_dict %}
+    <h3>{{ pokemon_dict['name'] }}</h3>
+    <h3>{{ pokemon_dict['ability'] }}</h3>
+    <h3>{{ pokemon_dict['hp'] }}</h3>
+    {% endif %}
+
+{% endblock %}
