@@ -2,7 +2,20 @@
 
 {% block content %}
 
-<h3>{{ poke_name }}</h3>
-<img src="{{ poke_img }}">
+{% if pokemon_dict %}
+<div class="card" style="width: 18rem;">
+    <img src="{{ pokemon_dict['image'] }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <p class="card-text">
+            <h3>{{ pokemon_dict['name'] }}</h3>
+            <h3>{{ pokemon_dict['types'] }}</h3>
+            <h3>{{ pokemon_dict['ability'] }}</h3>
+            <h3>{{ pokemon_dict['hp'] }}</h3>
+            <h3>{{ pokemon_dict['attack'] }}</h3>
+            <h3>{{ pokemon_dict['defense'] }}</h3>
+        </p>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}

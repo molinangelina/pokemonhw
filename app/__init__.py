@@ -16,6 +16,5 @@ from .models import db
 db.init_app(app)
 migrate = Migrate(app, db)
 
-
-from . import routes
 from . import models
+from . import routes
