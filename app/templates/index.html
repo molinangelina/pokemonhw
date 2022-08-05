@@ -4,7 +4,7 @@
     <form class="container" method="POST">
         {{ form.hidden_tag() }}
 
-        {{ form.poke_name(class='form-control', placeholder='poke_name', autocomplete='off')}}
+        {{ form.poke_name(class='form-control', placeholder='Enter Pokémon name or Pokémon ID', autocomplete='off')}}
         {{ form.submit(class='btn btn-primary')}}
     </form>
     {% if pokemon_dict %}
@@ -14,7 +14,7 @@
             <p class="card-text">
                 <h1>{{ pokemon_dict['name'].upper() }}</h1>
                 <h4>Type: {{ pokemon_dict['type'].title() }}</h4>
-                <h4>Ability: {{ pokemon_dict['ability'].title() }}</h4>
+                <h4>ABILITY: {{ pokemon_dict['ability'].title() }}</h4>
                 <h4>HP: {{ pokemon_dict['hp'] }}</h4>
                 <h4>ATTACK: {{ pokemon_dict['attack'] }}</h4>
                 <h4>DEFENSE: {{ pokemon_dict['defense'] }}</h4>
