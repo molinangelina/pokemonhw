@@ -18,6 +18,10 @@
                 <h4>HP: {{ pokemon_dict['hp'] }}</h4>
                 <h4>ATTACK: {{ pokemon_dict['attack'] }}</h4>
                 <h4>DEFENSE: {{ pokemon_dict['defense'] }}</h4>
+                <button type="button" class="btn btn-primary"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                Catch {{ pokemon_dict['name'].title() }}!
+                </button>
             </p>
         </div>
     </div>
