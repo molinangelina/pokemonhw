@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <legend>Welcome to the Pokémon Trainer Club!</legend>
+    <fieldset>
+        <form class="container" method="POST">
+            {{ form.hidden_tag() }}
+
+            {{ form.username(class='form-control', placeholder='username', autocomplete='off')}}
+            {{ form.password(class='form-control', placeholder='password', autocomplete='off')}}
+            {{ form.submit(class='btn btn-primary')}}
+        </form>
+    </fieldset>
+{% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<legend>Build your team of 5 Pokémon!</legend>
     <form class="container" method="POST">
         {{ form.hidden_tag() }}
 
@@ -14,7 +15,7 @@
             <p class="card-text">
                 <h1>{{ pokemon_dict['name'].upper() }}</h1>
                 <h4>Type: {{ pokemon_dict['type'].title() }}</h4>
-                <h4>ABILITY: {{ pokemon_dict['ability'].title() }}</h4>
+                <h4>Ability: {{ pokemon_dict['ability'].title() }}</h4>
                 <h4>HP: {{ pokemon_dict['hp'] }}</h4>
                 <h4>ATTACK: {{ pokemon_dict['attack'] }}</h4>
                 <h4>DEFENSE: {{ pokemon_dict['defense'] }}</h4>

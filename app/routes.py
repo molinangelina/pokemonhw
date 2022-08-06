@@ -1,4 +1,5 @@
 from flask import render_template, request, redirect, url_for
+from flask_login import current_user, login_required
 from .forms import PokeCreationForm
 # from app.models import Poke
 from app import app
@@ -15,11 +16,9 @@ def pokemonCard():
 
 
 @app.route('/', methods=["GET","POST"])
+@login_required
 def index():
     form = PokeCreationForm()
-
-
-
     if request.method == "POST":
         if form.data:
 

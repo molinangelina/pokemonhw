@@ -1,20 +1,16 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    Welcome to the Pokémon Trainer Club!
+<legend>Join the Pokémon Trainer Club!</legend>
+<fieldset>
     <form class="container" method="POST">
         {{ form.hidden_tag() }}
 
         {{ form.username(class='form-control', placeholder='username', autocomplete='off')}}
+        {{ form.email(class='form-control', placeholder='email', autocomplete='off')}}
         {{ form.password(class='form-control', placeholder='password', autocomplete='off')}}
+        {{ form.confirm_password(class='form-control', placeholder='confirm password', autocomplete='off')}}
         {{ form.submit(class='btn btn-primary')}}
     </form>
-
-
-    Join the Pokémon Trainer Club!
-    <form class="container" method="POST">
-        {{ form.hidden_tag() }}
-
-        {{ form.submit(class='btn btn-primary')}}
-    </form>
-{% endblock %} -->
+</fieldset>
+{% endblock %}
