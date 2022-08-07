@@ -16,7 +16,7 @@ from app.models import db
 @start.route('/login', methods = ['GET', 'POST'])
 def logMeIn():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('searchForPokemon'))
     form = LoginForm()
     if request.method == 'POST':
         if form.validate():
@@ -30,7 +30,7 @@ def logMeIn():
                 if check_password_hash(user.password, password):
                     flash("You have successfully logged in!", 'success')
                     login_user(user)
-                    return redirect(url_for('index'))
+                    return redirect(url_for('searchForPokemon'))
                 else:
                     flash('Incorrect username/password combination.', 'danger')
             else:
@@ -49,7 +49,7 @@ def logMeOut():
 @start.route('/signup', methods=["GET","POST"])
 def signMeUp():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('searchForPokemon'))
     form = UserCreationForm()
     if request.method == 'POST':
         print('POST request made')
