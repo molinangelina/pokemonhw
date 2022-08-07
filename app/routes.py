@@ -69,5 +69,5 @@ def battle(opponent):
 
 @app.route('/teams')
 def getAllTeams():
-    teams = user_pokemon.query.all()
-    return render_template('myteam.html', teams=teams)
+    teams = Pokemon.query.all()
+    return render_template('teams.html', teams=teams)
