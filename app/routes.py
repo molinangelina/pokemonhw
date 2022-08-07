@@ -2,7 +2,7 @@ from flask_login import current_user
 from app import app
 from flask import render_template, request, redirect, url_for, flash
 from app.forms import PokemonForm
-from .models import User, Pokemon
+from .models import User, Pokemon, user_pokemon
 import requests
 
 @app.route('/', methods=['GET', 'POST'])
@@ -47,22 +47,27 @@ def catchPokemon(pokemon_name):
         current_user.saveToDB()
     else:
         flash('Your team is already full', 'danger')
-    return redirect(url_for('searchForPokemon'))
+    return redirect(url_for('getMyTeam'))
 
 @app.route('/release/<string:pokemon_name>')
 def releasePokemon(pokemon_name):
     pokemon = Pokemon.query.filter_by(name=pokemon_name).first()
     current_user.team.remove(pokemon)
     current_user.saveToDB()
-    return redirect(url_for('searchForPokemon'))
+    return redirect(url_for('getMyTeam'))
 
-@app.route('/team')
+@app.route('/profile')
 def getMyTeam():
     team = current_user.team.all()
-    return render_template('myteam.html', team = team)
+    return render_template('profile.html', team = team)
 
 @app.route('/release/<string:opponent>')
 def battle(opponent):
     op = User.query(name=opponent)
     op.team.all()
     current_user.team.all()
+
+@app.route('/teams')
+def getAllTeams():
+    teams = user_pokemon.query.all()
+    return render_template('myteam.html', teams=teams)
