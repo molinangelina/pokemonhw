@@ -27,7 +27,7 @@ def searchForPokemon():
                 }
             pokemon = Pokemon.query.filter_by(name=pokemon_dict['name']).first()
             if not pokemon:
-                pokemon = Pokemon(pokemon_dict['name'], pokemon_dict['pokemon_type'], pokemon_dict['ability'], pokemon_dict['img_url'], pokemon_dict['hp'], pokemon_dict['attack'], pokemon_dict['defense'])
+                pokemon = Pokemon(pokemon_dict['name'], pokemon_dict['pokemon_type'], pokemon_dict['ability'], pokemon_dict['img_url'], pokemon_dict['hp'], pokemon_dict['attack'], pokemon_dict['defense'], current_user.id)
                 pokemon.save()
             else:
                 'invalid'
@@ -69,5 +69,10 @@ def battle(opponent):
 
 @app.route('/teams')
 def getAllTeams():
-    team = Pokemon.query.all()
-    return render_template('teams.html', team=team)
+    if current_user.is_authenticated:
+        teams = current_user.get_teams()
+    else:
+        teams = Pokemon.query.order_by(Pokemon.user_id).all()
+    return render_template('teams.html', teams=teams)
+
+# for loop == get each user

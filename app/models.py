@@ -28,6 +28,18 @@ class User(db.Model, UserMixin):
     def saveToDB(self):
         db.session.commit()
 
+            # get all the post that I am following plus my own
+    def get_teams(self):
+        # all the posts I am following
+        teams = Pokemon.query.join(user_pokemon, (Pokemon.user_id == user_pokemon.c.pokemon_id)).filter(user_pokemon.c.user_id == self.id)
+
+        # get all my posts
+        mine = Pokemon.query.filter_by(user_id = self.id)
+
+        # put them all together
+        all = teams.union(mine).order_by(Pokemon.user_id)
+        return all
+
 class Pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
@@ -37,8 +49,9 @@ class Pokemon(db.Model):
     hp = db.Column(db.String)
     attack = db.Column(db.String)
     defense = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, name, pokemon_type, ability, img_url, hp, attack, defense):
+    def __init__(self, name, pokemon_type, ability, img_url, hp, attack, defense, user_id):
         self.name = name
         self. pokemon_type = pokemon_type
         self.ability = ability
@@ -46,7 +59,8 @@ class Pokemon(db.Model):
         self.hp = hp
         self.attack = attack
         self.defense = defense
-
+        self.user_id = user_id
+        
     def save(self):
         db.session.add(self)
         db.session.commit()
